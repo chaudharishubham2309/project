@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Demand Forecasting</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Job Demand Forecasting</h1>
+        <form id="forecast-form">
+            <label for="domain">Select Domain:</label>
+            <select id="domain" name="domain">
+                {% for domain in domains %}
+                    <option value="{{ domain }}">{{ domain.capitalize() }}</option>
+                {% endfor %}
+            </select>
+            <label for="period">Forecast Period (Months):</label>
+            <input type="number" id="period" name="period" min="1" max="36" value="6">
+            <button type="submit">Generate Forecast</button>
+        </form>
+        <div id="plot-container">
+            <img id="forecast-plot" src="" alt="Forecast Plot">
+        </div>
+        <div id="forecast-data">
+            <h2>Forecasted Job Counts</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Job Count</th>
+                    </tr>
+                </thead>
+                <tbody id="forecast-table-body">
+                    <!-- Rows will be populated dynamically -->
+                </tbody>
+            </table>
+        </div>
+        <div id="evaluation-metrics">
+            <!-- Metrics will be populated dynamically -->
+        </div>
+        
+        <div class="download-buttons">
+            <button id="download-plot">Download Graph</button>
+            <button id="download-csv">Download CSV</button>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
